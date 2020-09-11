@@ -1,0 +1,33 @@
+{% block head %}
+<title>Calculator</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>Calculator</h1>
+
+    <form action="/" method="POST">
+        <label for="c">Type Calculation Here: </label>
+        <input type="text" name="calculate" id="calculate">
+        <input type="submit" value="Calculate">
+    </form>
+    <br>
+    <br>
+    <table border='1'>
+        <tr>
+            <th width='50%'>Calculation</th>
+            <th>Date Calculated</th>
+            <th>Delete</th>
+        </tr>
+        {% for calc in calculations %}
+            <tr>
+                <td>{{ calc.content }}</td>
+                <td>{{ calc.date_created.date() }}</td>
+                <td>
+                    <a href="/delete/{{calc.id}}">Delete Entry</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
